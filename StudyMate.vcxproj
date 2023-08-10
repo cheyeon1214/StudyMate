@@ -186,6 +186,7 @@
     <ClInclude Include="framework.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Resource.h" />
+    <ClInclude Include="SignUpDlg.h" />
     <ClInclude Include="StudyMate.h" />
     <ClInclude Include="StudyMateDlg.h" />
     <ClInclude Include="targetver.h" />
@@ -197,6 +198,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="SignUpDlg.cpp" />
     <ClCompile Include="StudyMate.cpp" />
     <ClCompile Include="StudyMateDlg.cpp" />
   </ItemGroup>

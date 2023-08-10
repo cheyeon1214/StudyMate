@@ -7,6 +7,7 @@
 #include "StudyMate.h"
 #include "StudyMateDlg.h"
 #include "afxdialogex.h"
+#include "SignUpDlg.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -67,6 +68,10 @@ BEGIN_MESSAGE_MAP(CStudyMateDlg, CDialog)
 	ON_WM_SYSCOMMAND()
 	ON_WM_PAINT()
 	ON_WM_QUERYDRAGICON()
+	ON_BN_CLICKED(IDCANCEL, &CStudyMateDlg::OnBnClickedCancel)
+	ON_EN_CHANGE(IDC_INPUT_ID, &CStudyMateDlg::OnEnChangeInputId)
+	ON_BN_CLICKED(IDC_BTN_LOGIN, &CStudyMateDlg::OnClickedBtnLogin)
+	ON_BN_CLICKED(IDC_BTN_SIGNIN, &CStudyMateDlg::OnBnClickedBtnSignin)
 END_MESSAGE_MAP()
 
 
@@ -155,3 +160,70 @@ HCURSOR CStudyMateDlg::OnQueryDragIcon()
 	return static_cast<HCURSOR>(m_hIcon);
 }
 
+
+
+void CStudyMateDlg::OnBnClickedCancel()
+{
+	// TODO: Add your control notification handler code here
+	CDialog::OnCancel();
+}
+
+
+void CStudyMateDlg::OnEnChangeEdit1()
+{
+	// TODO:  If this is a RICHEDIT control, the control will not
+	// send this notification unless you override the CDialog::OnInitDialog()
+	// function and call CRichEditCtrl().SetEventMask()
+	// with the ENM_CHANGE flag ORed into the mask.
+
+	// TODO:  Add your control notification handler code here
+}
+
+
+void CStudyMateDlg::OnEnChangeInputId()
+{
+	// TODO:  If this is a RICHEDIT control, the control will not
+	// send this notification unless you override the CDialog::OnInitDialog()
+	// function and call CRichEditCtrl().SetEventMask()
+	// with the ENM_CHANGE flag ORed into the mask.
+
+	// TODO:  Add your control notification handler code here
+}
+
+
+void CStudyMateDlg::OnBnClickedBtnSignin2()
+{
+	// TODO: Add your control notification handler code here
+}
+
+
+void CStudyMateDlg::OnClickedBtnLogin()
+{
+	// TODO: Add your control notification handler code here
+
+	CDatabase db;
+	if (db.OpenEx(_T("DSN=StudyMateDSN"))) {
+		CRecordset recset(&db);
+		CString strSQL;
+		
+		CString id, pw;
+		GetDlgItemText(IDC_INPUT_ID, id);
+		GetDlgItemText(IDC_INPUT_PW, pw);
+
+
+		strSQL.Format(_T("SELECT * FROM [TEST].[dbo].[Users] WHERE [Id]='%s' AND [pw]='%s'"), id, pw);
+
+		if (recset.Open(CRecordset::forwardOnly, strSQL)) {
+			if (!recset.IsEOF()) {
+				AfxMessageBox(_T("성공"));
+			}
+			else {
+				AfxMessageBox(_T("실패"));
+			}
+
+			recset.Close();
+		}
+		
+		db.Close();
+	}
+}
