@@ -9,6 +9,8 @@
 #include "afxdialogex.h"
 #include "SignUpDlg.h"
 
+#include <afxdb.h>
+
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
@@ -55,6 +57,8 @@ END_MESSAGE_MAP()
 
 CStudyMateDlg::CStudyMateDlg(CWnd* pParent /*=nullptr*/)
 	: CDialog(IDD_STUDYMATE_DIALOG, pParent)
+	, m_strName(_T(""))
+	, m_strPW(_T(""))
 {
 	m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
 }
@@ -62,6 +66,8 @@ CStudyMateDlg::CStudyMateDlg(CWnd* pParent /*=nullptr*/)
 void CStudyMateDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialog::DoDataExchange(pDX);
+	DDX_Text(pDX, IDC_INPUT_ID, m_strName);
+	DDX_Text(pDX, IDC_INPUT_PW, m_strPW);
 }
 
 BEGIN_MESSAGE_MAP(CStudyMateDlg, CDialog)
@@ -221,9 +227,3 @@ void CStudyMateDlg::OnClickedBtnLogin()
 				AfxMessageBox(_T("실패"));
 			}
 
-			recset.Close();
-		}
-		
-		db.Close();
-	}
-}
