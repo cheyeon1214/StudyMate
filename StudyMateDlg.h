@@ -39,4 +39,5 @@ public:
 	afx_msg void OnClickedBtnLogin();
 	CString m_strName;
 	CString m_strPW;
+	afx_msg void OnBnClickedBtnSignin();
 };
