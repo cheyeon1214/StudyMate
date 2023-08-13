@@ -87,5 +87,6 @@ void MainDlg::OnSelchangeMonthcalendar(NMHDR* pNMHDR, LRESULT* pResult)
     CDateDlg dlgDate;
     dlgDate.SetDateInfo(pSelChange->stSelStart);
     dlgDate.DoModal();
+
     *pResult = 0;
 }
