@@ -15,6 +15,7 @@
 #define IDC_STATIC_PW                   1004
 #define IDC_BTN_SIGNIN                  1005
 #define IDC_BTN_LOGIN                   1006
+
 #define IDC_SET_ID                      1011
 #define IDC_SET_PW                      1012
 #define IDC_CHECK_PW                    1013
@@ -29,6 +30,7 @@
 #define IDC_BUTTON1                     1019
 #define IDC_BTN_FRIENDS                 1019
 #define IDC_STATIC_NAME_DISPLAY         1021
+
 
 // Next default values for new objects
 // 
