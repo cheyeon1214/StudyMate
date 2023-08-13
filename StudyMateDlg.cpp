@@ -9,6 +9,8 @@
 #include "afxdialogex.h"
 #include "SignUpDlg.h"
 
+#include "MainDlg.h"
+
 #include <afxdb.h>
 
 #ifdef _DEBUG
@@ -221,9 +223,33 @@ void CStudyMateDlg::OnClickedBtnLogin()
 
 		if (recset.Open(CRecordset::forwardOnly, strSQL)) {
 			if (!recset.IsEOF()) {
-				AfxMessageBox(_T("성공"));
+				CString loggedInID = id; // 로그인한 사용자의 ID 정보
+				MainDlg mainDlg;
+				mainDlg.m_loggedInID = loggedInID; // MainDlg 클래스의 멤버 변수로 ID 정보 전달
+				mainDlg.DoModal();
+
+
+				//MainDlg signUpDialog;
+				//INT_PTR nResponse = signUpDialog.DoModal();
 			}
 			else {
-				AfxMessageBox(_T("실패"));
+				AfxMessageBox(_T("아이디 혹은 비밀번호를 다시 확인해 주세요."));
 			}
 
+			recset.Close();
+		}
+		
+		db.Close();
+	}
+}
+
+
+void CStudyMateDlg::OnBnClickedBtnSignin()
+{
+	// TODO: Add your control notification handler code here
+	// 대화상자 객체를 생성합니다.
+	SignUpDlg signUpDialog;
+
+	// 생성한 대화상자를 모달로 표시합니다.
+	INT_PTR nResponse = signUpDialog.DoModal();
+}
