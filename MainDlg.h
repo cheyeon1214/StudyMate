@@ -30,4 +30,6 @@ public:
 protected:
 	virtual BOOL OnInitDialog(); // OnInitDialog 함수 선언
 	
+public:
+	afx_msg void OnSelchangeMonthcalendar(NMHDR* pNMHDR, LRESULT* pResult);
 };

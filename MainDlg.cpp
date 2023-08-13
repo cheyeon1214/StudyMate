@@ -5,6 +5,7 @@
 #include "StudyMate.h"
 #include "afxdialogex.h"
 #include "MainDlg.h"
+#include "CDateDlg.h"
 
 #include <afxdb.h>
 
@@ -36,6 +37,7 @@ void MainDlg::DoDataExchange(CDataExchange* pDX)
 BEGIN_MESSAGE_MAP(MainDlg, CDialogEx)
 
     ON_BN_CLICKED(IDC_BTN_FRIENDS, &MainDlg::OnBnClickedBtnFriends)
+    ON_NOTIFY(MCN_SELCHANGE, IDC_MONTHCALENDAR, &MainDlg::OnSelchangeMonthcalendar)
 END_MESSAGE_MAP()
 
 BOOL MainDlg::OnInitDialog()
@@ -74,4 +76,16 @@ void MainDlg::OnBnClickedBtnFriends()
     message.Format(_T("%s"), m_loggedInID);
     AfxMessageBox(message);
     */
+}
+
+
+
+void MainDlg::OnSelchangeMonthcalendar(NMHDR* pNMHDR, LRESULT* pResult)
+{
+    LPNMSELCHANGE pSelChange = reinterpret_cast<LPNMSELCHANGE>(pNMHDR);
+    // TODO: Add your control notification handler code here
+    CDateDlg dlgDate;
+    dlgDate.SetDateInfo(pSelChange->stSelStart);
+    dlgDate.DoModal();
+    *pResult = 0;
 }
