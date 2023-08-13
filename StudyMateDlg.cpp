@@ -223,14 +223,11 @@ void CStudyMateDlg::OnClickedBtnLogin()
 
 		if (recset.Open(CRecordset::forwardOnly, strSQL)) {
 			if (!recset.IsEOF()) {
+				EndDialog(IDOK);
 				CString loggedInID = id; // 로그인한 사용자의 ID 정보
 				MainDlg mainDlg;
 				mainDlg.m_loggedInID = loggedInID; // MainDlg 클래스의 멤버 변수로 ID 정보 전달
 				mainDlg.DoModal();
-
-
-				//MainDlg signUpDialog;
-				//INT_PTR nResponse = signUpDialog.DoModal();
 			}
 			else {
 				AfxMessageBox(_T("아이디 혹은 비밀번호를 다시 확인해 주세요."));
