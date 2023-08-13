@@ -8,6 +8,7 @@
 #include "StudyMateDlg.h"
 #include "afxdialogex.h"
 #include "SignUpDlg.h"
+
 #include "MainDlg.h"
 
 #include <afxdb.h>
